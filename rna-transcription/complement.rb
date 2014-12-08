@@ -1,10 +1,8 @@
 class Complement
 
   def self.of_dna(entry)
-    rna = []
-
-    entry.chars.each do |letter|
-      rna << dna_transcription(letter)
+    rna = entry.chars.map do |letter|
+      dna_transcription(letter)
     end
     rna.join
   end
@@ -26,7 +24,15 @@ class Complement
   end
 
   def self.of_rna(entry)
-    case entry
+    dna = entry.chars.map do |letter|
+      rna_transcription(letter)
+    end
+    dna.join
+  end
+
+
+  def self.rna_transcription(letter)
+    case letter
     when 'C'
       'G'
     when 'G'
@@ -40,12 +46,5 @@ class Complement
     else
       puts "Hey invalid entry."
     end
-
   end
-
-  def self.rna_transcription(entry)
-
-  end
-
-
 end
